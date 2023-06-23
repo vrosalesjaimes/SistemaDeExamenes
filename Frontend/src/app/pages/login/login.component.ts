@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
     "password": ''
   }
 
-  constructor(private snack:MatSnackBar, private loginService:LoginService){
+  constructor(private snack:MatSnackBar, private loginService:LoginService,
+              private router:Router){
 
   }
 
@@ -46,10 +48,10 @@ export class LoginComponent implements OnInit {
             this.loginService.setUser(user);
             console.log(user);
             if(this.loginService.getUserRol() == "ADMIN"){
-              window.location.href = '/admin';
+              this.router.navigate(['/admin']);
             }
             else if(this.loginService.getUserRol() == "NORMAL"){
-              window.location.href = '/user';
+              this.router.navigate(['/user']);
             }else{
               this.loginService.logOut();
             }

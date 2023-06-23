@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  constructor(protected login:LoginService){}
+
+  public logOut(){
+    this.login.logOut();
+    window.location.reload();
+  }
 }
