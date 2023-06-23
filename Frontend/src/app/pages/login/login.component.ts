@@ -40,6 +40,12 @@ export class LoginComponent implements OnInit {
     this.loginService.generateToken(this.loginData).subscribe({
       next: (dato:any) => {
         console.log(dato);
+        this.loginService.loginUser(dato.token);
+        this.loginService.getCurrentUser().subscribe({
+          next: (user:any) =>{
+            console.log(user);
+          }
+        })
       },
       error: (error:any) =>{
         console.log(error);
